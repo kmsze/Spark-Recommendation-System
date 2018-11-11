@@ -3,7 +3,7 @@ from pyspark import SparkContext
 
 if __name__ == "__main__":
     sc = SparkContext("spark://ks1:7077", "Console")
-    sc.addPyFile('/home/kmsze/db_connector.py')
+    sc.addPyFile('/home/kmsze/Spark-Recommendation-System/db_connector.py')
     sc.setLogLevel("ERROR")
     from db_connector import DBConnector
     db = DBConnector()
