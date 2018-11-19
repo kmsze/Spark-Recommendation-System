@@ -6,7 +6,7 @@ if __name__ == "__main__":
     sc.addPyFile('/home/kmsze/Spark-Recommendation-System/db_connector.py')
     sc.setLogLevel("ERROR")
     from db_connector import DBConnector
-    db = DBConnector()
+    db = DBConnector("console")
 
     scanner = sc._gateway.jvm.java.util.Scanner
     sys_in = getattr(sc._gateway.jvm.java.lang.System, 'in')
@@ -28,6 +28,10 @@ if __name__ == "__main__":
             print ""
         elif fun == "run_model":
             db.run_model()
+        elif len(fun.split(',')) == 3:
+            print "add ratings"
+            rating_info = fun.split(',')
+            db._add_new_user_rating(rating_info[0], rating_info[1], rating_info[2])
         elif fun == "exit":
             pass
         else:
